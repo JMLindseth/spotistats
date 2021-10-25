@@ -5,9 +5,10 @@ from utils.graph import bar_graph
 def albums_bar_graph(albums_dict):
     top_album_threshold = 3
     top_artists = dict_with_values_above_x(albums_dict, top_album_threshold)
-    graph_title = f"Albums with > {top_album_threshold} songs"
+    title = f"Albums with > {top_album_threshold} songs"
+    filename = "top_albums.png"
 
-    bar_graph(top_artists, graph_title)
+    bar_graph(top_artists, title, filename)
 
 
 def album_ranking(albums):
