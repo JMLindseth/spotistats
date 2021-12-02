@@ -2,13 +2,20 @@ from utils.dict_utils import dict_with_values_above_x, sort_dict_desc
 from utils.graph import bar_graph
 
 
-def unique_artist_ids(artists):
-    artist_ids = set()
+def all_artist_ids(artists):
+    artist_ids = []
 
     for artist in artists:
-        artist_ids.add(artist['id'])
+        artist_ids.append(artist['id'])
 
     return artist_ids
+
+
+def unique_artist_ids(artists):
+    ids = all_artist_ids(artists)
+    unique_artists = list(dict.fromkeys(ids))
+
+    return unique_artists
 
 
 def artist_names(artists):
