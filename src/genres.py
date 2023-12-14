@@ -1,6 +1,7 @@
 from artists import artists_in_playlist, unique_artist_ids, all_artist_ids
 from utils.dict_utils import sort_dict_desc
 from pathlib import Path
+from utils.graph import bar_graph
 import json
 
 
@@ -58,11 +59,19 @@ def genres(sp, playlist_id):
 
     save_genres(genres_for_all_artists, genres_for_unique_artists)
 
-    return genres_for_all_artists
+    return genres_for_all_artists, genres_for_unique_artists
+
+def graph_genres(genres_dict, extra_text, filename):
+    sorted_desc = sort_dict_desc(genres_dict)
+    top_10 = dict(list(sorted_desc.items())[0:10])
+    bar_graph(top_10, "Top 10 genres for unique artists", filename, extra_text)
 
 
 def genre_stats(sp, playlist_id):
-    genre_dict = genres(sp, playlist_id)
-    sorted_genres = sort_dict_desc(genre_dict)
+    all_artist_genres, unique_artis_genres = genres(sp, playlist_id)
 
-    print(sorted_genres)
+    extra_text_unique = "For hver unike artist, finn alle sjangre og tell antall forekomster."
+    extra_text_all = "For hver låt, finn alle sjangre til tilhørende artist og tell antall forekomster."
+
+    graph_genres(unique_artis_genres, extra_text_unique, "unique_genres.png")
+    graph_genres(all_artist_genres, extra_text_all, "all_genres.png")

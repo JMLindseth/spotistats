@@ -16,14 +16,15 @@ def annotate_with_number_of_songs(names, num_songs):
                      ha='center')
 
 
-def bar_graph(dictionary, title, filename):
+def bar_graph(dictionary, title, filename, extra_text):
     fig = plt.figure()
     ax = fig.add_subplot(211)
     names = dictionary.keys()
     num_songs = dictionary.values()
     ax.bar(names, num_songs)
-    plt.xticks(rotation=90)
+    plt.xticks(rotation=45, ha="right")
     plt.title(title)
+    plt.gcf().text(0.09, 0.1, extra_text, fontsize=10)
 
     annotate_with_number_of_songs(names, num_songs)
 

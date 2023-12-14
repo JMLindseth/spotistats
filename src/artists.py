@@ -47,8 +47,9 @@ def artist_bar_graph(artists_dict):
     top_artists = dict_with_values_above_x(artists_dict, top_artist_threshold)
     title = f"Artists with > {top_artist_threshold} songs"
     filename = "top_artist.png"
+    extra_text = f"Unique artists: {len(artists_dict)}"
 
-    bar_graph(top_artists, title, filename)
+    bar_graph(top_artists, title, filename, extra_text)
 
 
 def artist_stats(sp, playlist_id):

@@ -7,8 +7,9 @@ def albums_bar_graph(albums_dict):
     top_artists = dict_with_values_above_x(albums_dict, top_album_threshold)
     title = f"Albums with > {top_album_threshold} songs"
     filename = "top_albums.png"
+    extra_text = f"Unique albums: {len(albums_dict)}"
 
-    bar_graph(top_artists, title, filename)
+    bar_graph(top_artists, title, filename, extra_text)
 
 
 def album_ranking(albums):
